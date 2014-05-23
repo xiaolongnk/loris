@@ -21,10 +21,6 @@ public class author extends Activity{
 			author.this.finish();
 	    }  
 	    return super.onKeyDown(keyCode, event);  
-	}
-	private void startActivity(Intent intent, int i) {
-		// TODO Auto-generated method stub
-		
 	}  
 
 }

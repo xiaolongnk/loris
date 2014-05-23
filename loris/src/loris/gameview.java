@@ -8,36 +8,22 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Shader;
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.util.AttributeSet;
 import android.view.View;
 import loris.music;
 
-/*
- * 	游戏的主区域。
- * 
- */
 
 public class gameview extends View {
 	ArrayList<Point> info = new ArrayList<Point>();
-	public int size =36; // 每个单位 是 30 px， 这个 size 是整个游戏的 size大小
-	private static final int vheight = 20; // 屏幕 高 是 15 个单位
-	private static final int vwidth = 10; // 屏幕 宽 是 10 个单位
+	public int size =36; 
+	private static final int vheight = 20;
+	private static final int vwidth = 10; 
 	private boolean drawnow = true;
-	private music onmusic;//爆炸音
 	int[][] board = new int[vwidth][vheight];
 	
 	public gameview(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// 在这里初始化 size 的大小。
-		// 先认为 size = 30; 留待后期完成。
-		
-		// 这里是初始化view 大小的工作 , 通过 fix 方法， 就确定了 size 的大小
-		// mywidth myheight 相当于是对这三个常量的初始化。 
 		fix();
-		//System.out.println("size of the board is"+size);
-		// 将期盘初始化为空。
 		for (int i = 0; i < vwidth; i++)
 			for (int j = 0; j < vheight; j++) {
 				board[i][j] = 0;
@@ -65,10 +51,6 @@ public class gameview extends View {
 	}
 
 	public void onDraw(Canvas canvas) {
-		
-		// 第一件事 是确定屏幕上的边界区域，然后画出填充图形。
-		// 这两个 裁剪区域是 有mywidth  和  myheight 来确定的。
-		// 得到背景颜色值。
 		Paint mpaint = new Paint();
 		mpaint.setColor(Color.parseColor("#00000000"));
 		canvas.drawRect(size*vwidth,0,this.getWidth(),this.getHeight(), mpaint);

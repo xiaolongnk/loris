@@ -2,10 +2,13 @@ package loris;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 import com.example.loris.R;
+
 import java.text.SimpleDateFormat;   
+
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -33,7 +36,6 @@ import loris.lorisdb;
 import loris.rankitem;
 public class MainActivity extends Activity {
 
-	// 游戏主屏中的相关控件
 	public gameview loris;
 	public shownext smallloris;
 	private ImageButton bt_left;
@@ -42,11 +44,9 @@ public class MainActivity extends Activity {
 	private ImageButton bt_change;
 	private ImageButton bt_stop;
 	private ImageButton bt_quit;
-	//private AlertDialog dialog ;//输入玩家姓名对话框
-	private EditText input;//输入玩家姓名
+	private EditText input;
 	
 	private String txt_ok;
-	private String txt_cancel;
 	private String txt_onboard;
 	private String txt_levelup;
 	private String txt_level;
@@ -62,8 +62,6 @@ public class MainActivity extends Activity {
 	
 	public MediaPlayer player;
 
-	// 最终考虑的结果是，这个初始化需要的数组应该是一个 二维数组。通过 type 和 typetype
-	// 索引来取值。
 	private ArrayList<Point> pointmine;
 
 	private static int gamespeed = 600;
@@ -131,7 +129,7 @@ public class MainActivity extends Activity {
 		bt_quit = (ImageButton) this.findViewById(R.id.bt_quit);
 		
 		txt_ok = getResources().getString(R.string.txt_ok);
-		txt_cancel = getResources().getString(R.string.txt_cancel);
+		getResources().getString(R.string.txt_cancel);
 		txt_onboard = getResources().getString(R.string.txt_onboard);
 		txt_level = getResources().getString(R.string.txt_level);
 		txt_level = getResources().getString(R.string.txt_level);
@@ -267,7 +265,7 @@ public class MainActivity extends Activity {
 					int which) {
 				rankitem user=new rankitem();
                 user.name=input.getText().toString();
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss     ");       
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss",Locale.CHINA);       
                 Date curDate  = new Date(System.currentTimeMillis());//获取当前时间       
                 String str = formatter.format(curDate);  
                 user.date= str;
@@ -282,7 +280,6 @@ public class MainActivity extends Activity {
 		});
 
 		 builder.create().show();
-		 
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -315,7 +312,6 @@ public class MainActivity extends Activity {
 		forcast temp = new forcast();
 		int atype=0,atypetype=0;
 		
-		ArrayList alist = new ArrayList<Point>();
 		// 在这个随机一个图形， 用来存放生成的图形。
 		Random random = new Random();
 		// 只产生 长条 横向的。
@@ -379,25 +375,17 @@ public class MainActivity extends Activity {
 		
 	}
 
-
-	// 对游戏中发回的消息进行处理。
 	Handler myhandler = new Handler() {
 		public void handleMessage(Message msg) {
-			// 对对应的消息进行处理。
-			if (msg.what == MainActivity.this.makegrade) {
-				// 计算分数，生成下一个图形，更新右移中的其他相关区域。
-				// 将当前的这个物块的信息 通过 gameview 的 abrorb 方法写入board
+			if (msg.what == MainActivity.makegrade) {
 				loris.absorb(mrat.getdata());
 				final int score =loris.makegrade();
 				//grade=score;
 				if(score == -1) {
 					stop = true;
-					System.out.println(txt_over);
 					Toast.makeText(MainActivity.this,txt_over,Toast.LENGTH_LONG).show();
 					end(gamescore);
-					Thread.currentThread().yield();	// 释放当前的进程。
-					// 转到结束界面。
-					
+					Thread.currentThread().yield();					
 				}
 				else if(score!=0){
 					sp.play(music2, 1, 1, 0, 0, 1);
@@ -423,7 +411,7 @@ public class MainActivity extends Activity {
 				nrat = new srat(next);
 				smallloris.drawpoint(nrat.getdata());// 进行信息的预报。
 				
-			} else if (msg.what == MainActivity.this.refresh) {
+			} else if (msg.what == MainActivity.refresh) {
 				// 这说明游戏物块正在下落，实际上不需要做什么。
 				tempinfo = mrat.getdata();
 				loris.drawpoint(tempinfo);

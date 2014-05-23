@@ -1,9 +1,6 @@
 package loris;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-
 import android.graphics.Point;
 
 /*
@@ -21,11 +18,7 @@ public class srat {
 	private static final int vheight=20;
 	private static final int vwidth=10;
 	
-	// 这是当前的 gameview 中的棋盘，我们要根据这个来判断自己的行走状态。
-	private int[][] board = new int[vwidth][vheight];
 	public int sratspeed; // 物块每次只下滑一个单位。
-	private int sratsize = 1;
-
 	public srat(forcast temp) {
 		// 构造的时候，点的list 这个list 包含了图形的关键点的信息。
 		// 利用这些点，可以在屏幕上画出相应的图形。
