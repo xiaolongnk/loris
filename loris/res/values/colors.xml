@@ -1,0 +1,6 @@
+<resources>
+	<!-- 这是 颜色 的配置文件 在程序中直接引用这里的资源就行 方便
+	管理  还有 我学会了xml 的注释呢 -->
+    <color name="bkcolor">#888887</color>
+    <color name="hello">#888888</color>
+</resources>
