@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/light"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:baselineAligned="false"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="4" >
+            
+            <loris.gameview
+                android:id="@+id/loris"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#00000000" >
+            </loris.gameview>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:background="#00000000"
+                android:text="@string/txt_nextobj"
+                android:textColor="#0000FF" />
+
+            <loris.shownext
+                android:id="@+id/smallloris"
+                android:layout_width="70dp"
+                android:layout_height="90dp"
+                android:background="#00000000" >
+            </loris.shownext>
+
+            <TextView
+                android:id="@+id/tv_score"
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:text="@string/txt_score"
+                android:textColor="#0000FF" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_level"
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:text="@string/txt_level"
+                android:textColor="#0000FF" >
+            </TextView>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp" />
+
+            <ImageButton
+                android:contentDescription="@string/txt_blank"
+                android:id="@+id/bt_quit"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:src="@drawable/erreur" >
+            </ImageButton>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#00f5ff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="3dp" >
+
+        <ImageButton
+            android:contentDescription="@string/txt_blank"
+            android:background="@color/white"
+            android:id="@+id/bt_left"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/left_select" >
+        </ImageButton>
+
+        <ImageButton
+            android:contentDescription="@string/txt_blank"
+            android:id="@+id/bt_down"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/down_select" >
+        </ImageButton>
+
+        <ImageButton
+            android:contentDescription="@string/txt_blank"
+            android:id="@+id/bt_right"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:src="@drawable/right_select" >
+        </ImageButton>
+
+        <ImageButton
+            android:contentDescription="@string/txt_blank"
+            android:id="@+id/bt_change"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/shift_select" >
+        </ImageButton>
+
+        <ImageButton
+            android:contentDescription="@string/txt_blank"
+            android:id="@+id/bottom"
+            android:background="@color/white"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/pau" >
+        </ImageButton>
+    </LinearLayout>
+
+</LinearLayout>
