@@ -54,6 +54,7 @@ public class lorisdb {
 		}
 		return mlist;
 	}
+	
 	public void deleteAll() {
 		dbInstance.delete(DB_TABLENAME,null,null);
 	}

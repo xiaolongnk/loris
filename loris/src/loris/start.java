@@ -29,9 +29,9 @@ public class start extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.start);
 		init();
-		dealwithbt();
-		
+		dealwithbt();	
 	}
+	
 	void init()
 	{
 		begin=(Button)findViewById(R.id.start_begin);
@@ -47,7 +47,6 @@ public class start extends Activity{
 		
 		
 		begin.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View arg0) {
 				Intent intent = new Intent(start.this,MainActivity.class);

@@ -11,5 +11,13 @@
     <string name="txt_score">        分数：</string>
     <string name="txt_over"> 游戏结束! </string>
     <string name="txt_onboard">您上英雄榜啦！</string>
+    <string name="txt_suretoexit">是否要退出</string>
+    <string name="txt_timeformater">yyyy-MM-dd HH:mm</string>
+    <string name="txt_nextobj">   下一个图形</string>
+    <string name="txt_blank"></string>
+    <string name="developers"> developers </string>
+    <string name="author1"> author1 </string>
+    <string name="author2"> author2 </string>
+    <string name="author3"> author3 </string>
 
 </resources>

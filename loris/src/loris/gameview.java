@@ -1,6 +1,7 @@
 package loris;
 
 import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,12 +10,15 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Shader;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 
 public class gameview extends View {
+	public static String ss = "gameview";
 	ArrayList<Point> info = new ArrayList<Point>();
-	public int size =36; 
+	public int size =0; 
+	
 	private static final int vheight = 20;
 	private static final int vwidth = 10; 
 	private boolean drawnow = true;
@@ -25,7 +29,6 @@ public class gameview extends View {
 	
 	public gameview(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		fix();
 		init();
 	}
 	
@@ -45,9 +48,7 @@ public class gameview extends View {
 	}
 	
 	public void fix() {
-		// 根据传回来的参数来修改这个 view .
-		// 从原点开始，根据 view 的 高度 和 宽度，计算出 size 的大小
-
+		
 	}
 
 	public void updateboard(ArrayList<Point> p) {
@@ -61,28 +62,34 @@ public class gameview extends View {
 		info = p;
 	}
 	
+	public void caculateSize(float w, float h){
+		size =(int) ( (w/vwidth) < (h/vheight) ? w/vwidth : h/vheight);
+		isfirst = true;
+	}
+	private boolean isfirst = false;
 	public void onDraw(Canvas canvas) {
+		
+		if(!isfirst) caculateSize(this.getWidth(),this.getHeight());
 		
 		canvas.drawRect(size*vwidth,0,this.getWidth(),this.getHeight(), mpaint);
 		canvas.drawRect(0,size*vheight,this.getWidth(),this.getHeight(),mpaint);
 		
-				
+		fix();
+		
 		mpaint.setShader(mShader);
 		mpaint.setShadowLayer(2 , 2 , 2 , Color.GRAY);
 		mpaint.setColor(Color.BLUE);
-		mpaint.setStrokeCap(Paint.Cap.ROUND);//头尾圆润
-        mpaint.setStrokeJoin(Paint.Join.ROUND); //关节处圆润
-		// 画屏幕上已经有的小方块
-		for (int i = 0; i < vwidth; i++)
+		mpaint.setStrokeCap(Paint.Cap.ROUND);
+        mpaint.setStrokeJoin(Paint.Join.ROUND); 
+
+        for (int i = 0; i < vwidth; i++)
 			for (int j = 0; j < vheight; j++) {
 				if (board[i][j] == 1) {
 					int x = i, y = j;
-					canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1)
-							* size, mpaint);
+					canvas.drawRect(x * size, y * size, 
+							(x + 1)*size, (y + 1)*size, mpaint);
 				}
 			}
-
-		// 画屏幕上正在运动的小方块
 
 		if (drawnow) {
 			for (int i = 0; i < info.size(); i++) {
@@ -92,7 +99,6 @@ public class gameview extends View {
 						* size, mpaint);
 			}
 		}
-		
 		int i;
 		for( i=0; i<=vwidth;i++){
 			canvas.drawLine(i*size,0, i*size, vheight*size, netpen);
@@ -102,8 +108,6 @@ public class gameview extends View {
 		}
 		drawnow = true;
 	}
-
-	// 将 ArrayList p 中的点留作屏幕上的固定的点。这些点在每一次绘制的时候都会被会画出来。
 	public void absorb(ArrayList<Point> p) {
 		for (int i = 0; i < p.size(); i++) {
 			int x = p.get(i).x;

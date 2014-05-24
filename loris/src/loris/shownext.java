@@ -20,10 +20,11 @@ public class shownext extends View {
 	public int size = 20; 
 	private static final int vheight = 6;
 	private static final int vwidth = 5; 
-	
+	private Paint pen;
 	public shownext(Context context, AttributeSet attrs) {
 		super(context, attrs);
-	
+		pen = new Paint();
+		pen.setColor(Color.parseColor("#FF1493"));
 	}
 
 
@@ -34,11 +35,7 @@ public class shownext extends View {
 
 	public void onDraw(Canvas canvas) {
 		
-
 		
-		Paint pen = new Paint();
-		
-		pen.setColor(Color.parseColor("#FF1493"));
 		for (int i = 0; i < info.size(); i++) {
 			int x = info.get(i).x-3;
 			int y = info.get(i).y+3;

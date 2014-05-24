@@ -84,9 +84,7 @@ public class MainActivity extends Activity {
 	private SoundPool sp;//声明一个SoundPool   
     private int music;//定义一个整型用load（）；来设置suondID  
     private int music2;
-	//private music onmusic;//按键音
-//	private int vheight;
-//	private int vwidth;
+
 	private lorisdb db;
 	String background;
 	protected void onCreate(Bundle savedInstanceState) {
@@ -128,17 +126,12 @@ public class MainActivity extends Activity {
 		bt_quit = (ImageButton) this.findViewById(R.id.bt_quit);
 		
 		txt_ok = getResources().getString(R.string.txt_ok);
-		getResources().getString(R.string.txt_cancel);
 		txt_onboard = getResources().getString(R.string.txt_onboard);
 		txt_level = getResources().getString(R.string.txt_level);
 		txt_level = getResources().getString(R.string.txt_level);
 		txt_over = getResources().getString(R.string.txt_over);
 		txt_score = getResources().getString(R.string.txt_score);
 		txt_timeformater = getResources().getString(R.string.txt_timeformater);
-		
-		//loris.fix();
-//		vheight = loris.getHeight();
-//		vwidth = loris.getWidth();
 		
 		inipointmine();
 	}
@@ -153,7 +146,6 @@ public class MainActivity extends Activity {
 					tempinfo = mrat.getdata();
 					loris.drawpoint(tempinfo);
 					loris.invalidate();
-					//mu.playMoveVoice();
 					sp.play(music, 1, 1, 0, 0, 1);
 				}
 			}
@@ -162,12 +154,10 @@ public class MainActivity extends Activity {
 		bt_left.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// 如果可以向左移动，那么想左移动。
 				if (mrat.moveleft(loris.board)) {
 					tempinfo = mrat.getdata();
 					loris.drawpoint(tempinfo);
 					loris.invalidate();
-					//mu.playMoveVoice();
 					sp.play(music, 1, 1, 0, 0, 1);
 				}
 
@@ -178,7 +168,6 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (mrat.moveright(loris.board)) {
-					// 如果可以享有移动，那么向右移动。
 					tempinfo = mrat.getdata();
 					loris.drawpoint(tempinfo);
 					loris.invalidate();
@@ -193,13 +182,11 @@ public class MainActivity extends Activity {
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				
 				if(arg1.getAction()==MotionEvent.ACTION_DOWN){
-					// 进入加速状态
 					oldgamespeed = gamespeed;
 					gamespeed = 30;
 					sp.play(music, 1, 1, 0, 0, 1);	
 				}
 				else if(arg1.getAction() == MotionEvent.ACTION_UP){
-					// 退出加速状态
 					gamespeed = oldgamespeed;
 				}
 				return false;
@@ -216,7 +203,6 @@ public class MainActivity extends Activity {
 					bt_change.setEnabled(false);
 					bt_down.setEnabled(false);
 					player.pause();
-					// 改变图片的样式为 启动
 				} else if (gamestate == 2) {
 					gamestate = 1;
 					bt_stop.setImageResource(R.drawable.pau);
@@ -225,7 +211,6 @@ public class MainActivity extends Activity {
 					bt_change.setEnabled(true);
 					bt_down.setEnabled(true);
 					player.start();
-					// 改变图片的样式 为 暂停
 				}
 			}
 		});
@@ -282,7 +267,6 @@ public class MainActivity extends Activity {
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
@@ -319,15 +303,11 @@ public class MainActivity extends Activity {
 		// 为三个属性生成值就可以。
 		// int type = random.nextInt()%NUM;
 		atypetype = 1;
-		//if(type <1) type ++;
-		// if type >=1 && type <=7 ==>> 0--6
 		if( atype >0 && atype<=pointmine.size()) temp.spoint = pointmine.get(atype-1);
 		else{
-			// 还有可能是 这个数 ==0 那么和第 7 种图形相对应。
 			atype = 7;
 			temp.spoint = pointmine.get(6);
 		}
-		// 将生成的图形返回即可。
 		temp.type = atype;
 		temp.typetype = atypetype;
 		return temp;
