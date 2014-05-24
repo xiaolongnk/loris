@@ -10,7 +10,6 @@ import android.graphics.Point;
 import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
-import loris.music;
 
 
 public class gameview extends View {
@@ -20,25 +19,37 @@ public class gameview extends View {
 	private static final int vwidth = 10; 
 	private boolean drawnow = true;
 	int[][] board = new int[vwidth][vheight];
+	private Paint mpaint;
+	private Shader mShader;
+	private Paint netpen;
 	
 	public gameview(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		fix();
+		init();
+	}
+	
+	public void init(){
 		for (int i = 0; i < vwidth; i++)
 			for (int j = 0; j < vheight; j++) {
 				board[i][j] = 0;
 			}
-		
+		mpaint = new Paint();
+		mpaint.setColor(Color.parseColor("#00000000"));
+		mShader = new LinearGradient(0,0,600,540
+				, new int[] {
+				Color.parseColor("#FF1493"), Color.parseColor("#0000FF") }
+				, null , Shader.TileMode.REPEAT);
+		netpen = new Paint();
+		netpen.setColor(Color.GRAY);
 	}
-
+	
 	public void fix() {
 		// 根据传回来的参数来修改这个 view .
 		// 从原点开始，根据 view 的 高度 和 宽度，计算出 size 的大小
 
 	}
 
-	// 如果物块停止了，那么调用这个方法，将物块的所有点保存在屏幕数组中。
-	// 在每次更新试图的时候，都将已经存在的物块画出来。
 	public void updateboard(ArrayList<Point> p) {
 		for (int i = 0; i < p.size(); i++) {
 			Point temp = p.get(i);
@@ -49,20 +60,14 @@ public class gameview extends View {
 	public void drawpoint(ArrayList<Point> p) {
 		info = p;
 	}
-
+	
 	public void onDraw(Canvas canvas) {
-		Paint mpaint = new Paint();
-		mpaint.setColor(Color.parseColor("#00000000"));
+		
 		canvas.drawRect(size*vwidth,0,this.getWidth(),this.getHeight(), mpaint);
 		canvas.drawRect(0,size*vheight,this.getWidth(),this.getHeight(),mpaint);
 		
-		Shader mShader = new LinearGradient(0,0,600,540
-				, new int[] {
-				Color.parseColor("#FF1493"), Color.parseColor("#0000FF") }
-				, null , Shader.TileMode.REPEAT);
 				
 		mpaint.setShader(mShader);
-			//设置阴影
 		mpaint.setShadowLayer(2 , 2 , 2 , Color.GRAY);
 		mpaint.setColor(Color.BLUE);
 		mpaint.setStrokeCap(Paint.Cap.ROUND);//头尾圆润
@@ -72,7 +77,6 @@ public class gameview extends View {
 			for (int j = 0; j < vheight; j++) {
 				if (board[i][j] == 1) {
 					int x = i, y = j;
-					
 					canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1)
 							* size, mpaint);
 				}
@@ -89,17 +93,14 @@ public class gameview extends View {
 			}
 		}
 		
-		Paint netpen = new Paint();
-		netpen.setColor(Color.GRAY);
-		
-		for( int i=0; i<=vwidth; i++){
+		int i;
+		for( i=0; i<=vwidth;i++){
 			canvas.drawLine(i*size,0, i*size, vheight*size, netpen);
 		}
-		for( int i=0; i<=vheight; i++){
+		for( i=0; i<=vheight; i++){
 			canvas.drawLine(0,i*size, vwidth*size, i*size, netpen);
 		}
 		drawnow = true;
-		// 在屏幕上画网格
 	}
 
 	// 将 ArrayList p 中的点留作屏幕上的固定的点。这些点在每一次绘制的时候都会被会画出来。

@@ -31,7 +31,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import loris.sound;
 import loris.lorisdb;
 import loris.rankitem;
 public class MainActivity extends Activity {
@@ -52,7 +51,7 @@ public class MainActivity extends Activity {
 	private String txt_level;
 	private String txt_score;
 	private String txt_over;
-	
+	private String txt_timeformater;
 	
 	
 	private TextView tv_score;
@@ -135,10 +134,12 @@ public class MainActivity extends Activity {
 		txt_level = getResources().getString(R.string.txt_level);
 		txt_over = getResources().getString(R.string.txt_over);
 		txt_score = getResources().getString(R.string.txt_score);
+		txt_timeformater = getResources().getString(R.string.txt_timeformater);
 		
 		//loris.fix();
 //		vheight = loris.getHeight();
 //		vwidth = loris.getWidth();
+		
 		inipointmine();
 	}
 
@@ -233,7 +234,6 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				// 结束当前的 activity ， 等有了主界面之后，是返回到主界面。
 				stop = true;
 				player.stop();
 				Intent intent = new Intent(MainActivity.this,start.class);
@@ -252,7 +252,6 @@ public class MainActivity extends Activity {
 		db.openDatabase();
 		final Builder builder = new AlertDialog.Builder(this);
 		builder.setIcon(R.drawable.debug);
-		//设置对话框的标题
 		builder.setTitle(txt_onboard);
 		LinearLayout dlg=(LinearLayout) getLayoutInflater().inflate(R.layout.dialog, null);
 		builder.setView(dlg);
@@ -265,8 +264,8 @@ public class MainActivity extends Activity {
 					int which) {
 				rankitem user=new rankitem();
                 user.name=input.getText().toString();
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss",Locale.CHINA);       
-                Date curDate  = new Date(System.currentTimeMillis());//获取当前时间       
+                SimpleDateFormat formatter = new SimpleDateFormat(txt_timeformater,Locale.CHINA);       
+                Date curDate  = new Date(System.currentTimeMillis());    
                 String str = formatter.format(curDate);  
                 user.date= str;
                 user.score=score;
@@ -342,9 +341,6 @@ public class MainActivity extends Activity {
 		mrat = new srat(cur); // 利用当前的物块开始游戏。
 		nrat = new srat(next);
 		smallloris.drawpoint(nrat.getdata());
-		// 在进入 线程部分，这里需要做的还有 更新 游戏的相关区域。
-
-		// newsrat(); // 为 3 个属性赋值。 // 生成一个新物块。
 		new Thread(new Runnable() {
 			public void run() {
 				while (true) {
@@ -412,7 +408,7 @@ public class MainActivity extends Activity {
 				smallloris.drawpoint(nrat.getdata());// 进行信息的预报。
 				
 			} else if (msg.what == MainActivity.refresh) {
-				// 这说明游戏物块正在下落，实际上不需要做什么。
+				//这说明游戏物块正在下落，实际上不需要做什么。
 				tempinfo = mrat.getdata();
 				loris.drawpoint(tempinfo);
 				loris.invalidate();

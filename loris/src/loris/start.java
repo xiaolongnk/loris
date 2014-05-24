@@ -4,6 +4,7 @@ import com.example.loris.R;
 
 
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,11 +15,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class start extends Activity{
-	Button begin;
-	Button hero;
-	Button help;
-	Button author;
-	Button quit;
+	private Button begin;
+	private Button hero;
+	private Button help;
+	private Button author;
+	private Button quit;
+	private String txt_ok;
+	private String txt_cancel;
+	private String txt_suretoexit;
 	
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,9 @@ public class start extends Activity{
 		help=(Button)findViewById(R.id.start_help);
 		author=(Button)findViewById(R.id.start_author);
 		quit=(Button)findViewById(R.id.start_quit);
+		txt_ok = getResources().getString(R.string.txt_ok);
+		txt_cancel = getResources().getString(R.string.txt_cancel);
+		txt_suretoexit = getResources().getString(R.string.txt_suretoexit);
 	}
 	public void dealwithbt() {
 		
@@ -82,19 +89,19 @@ public class start extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				 new AlertDialog.Builder(start.this).
-					setPositiveButton("确定",new DialogInterface.OnClickListener() {
+					setPositiveButton(txt_ok,new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 								
 							start.this.finish();
 						}
-					}).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					}).setNegativeButton(txt_cancel, new DialogInterface.OnClickListener() {
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							
 						}
-					}).setTitle("是否要退出?").create().show();
+					}).setTitle(txt_suretoexit).create().show();
 			}
 		});
 		

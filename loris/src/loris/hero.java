@@ -1,8 +1,12 @@
 package loris;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.example.loris.R;
+
+
 
 
 import android.app.Activity;
@@ -20,7 +24,7 @@ public class hero extends Activity{
 	
 	
 	private ListView herolist;
-	ArrayList list;
+	ArrayList<rankitem> list;
 	lorisdb helper;
 	SimpleAdapter adapter;
 	Button delete;
@@ -33,7 +37,7 @@ public class hero extends Activity{
         list = helper.getUsers();
         herolist = (ListView)findViewById(R.id.hero_list); 
         adapter = new SimpleAdapter(this, 
-					list, 
+					(List<? extends Map<String, ?>>) list, 
 					R.layout.listitem, 
 					new String[]{"name","score","date"}, 
 					new int[]{R.id.tv_name,R.id.tv_grade,R.id.tv_date});
@@ -71,7 +75,7 @@ public class hero extends Activity{
 	{
 		 list = helper.getUsers();
 		 adapter = new SimpleAdapter(this, 
-					list, 
+					(List<? extends Map<String, ?>>) list, 
 					R.layout.listitem, 
 					new String[]{"name","score","date"}, 
 					new int[]{R.id.tv_name,R.id.tv_grade,R.id.tv_date});

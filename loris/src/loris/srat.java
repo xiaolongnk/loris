@@ -41,10 +41,9 @@ public class srat {
 		System.out.println("(" + t.x + "," + t.y + ")");
 	}
 
-	// 目前只包含了 长条的两种扩充方案。用来前期测试。
 	public ArrayList<Point> fillsratinfo(Point s, int type, int typetype) {
 		ArrayList<Point> temp = new ArrayList<Point>();
-		// 按照类型，给对应的图形天充满 sratinfo 数组。
+		
 		int a=0, b=0;
 		a = s.x;
 		b = s.y;
@@ -373,14 +372,11 @@ public class srat {
 	}
 
 	public boolean movedown(int [][]b) {
-		// level 表明游戏的级别，游戏的级别决定了 speed，这个参数
-		// 由游戏主方在使用的时候给出。
 		Point temp = new Point(sratpoint.x,sratpoint.y+1);
 		ArrayList<Point> temparray = new ArrayList<Point>();
 		temparray =fillsratinfo(temp,srattype,srattypetype);
 		if(check(temparray,b)){
 			// 如果可以移动，那么更新当前物块的坐标。
-			//prt("可以向下走动，马上更新坐标。");
 			sratpoint = temp;
 			sratinfo = temparray;
 			return true;	

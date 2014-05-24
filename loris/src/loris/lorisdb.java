@@ -1,12 +1,12 @@
 package loris;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 
 public class lorisdb {
 	
@@ -38,25 +38,21 @@ public class lorisdb {
 		return dbInstance.insert(DB_TABLENAME, null, values);
 	}
 	
-	
+	public ArrayList<rankitem> getUsers() {
+		ArrayList<rankitem> mlist = new ArrayList<rankitem>();
 
-	public ArrayList getUsers() {
-		ArrayList list = new ArrayList();
-		String strSelection = "";
-		boolean privacy=true;
-		// 按成绩降序排列，将结果返回。
 		String sql = "select * from " + DB_TABLENAME +" order by score desc";
 		
 		Cursor cursor = dbInstance.rawQuery(sql, null);
 		while(cursor.moveToNext()) {
-			HashMap item = new HashMap();
-			item.put("name", cursor.getString(cursor.getColumnIndex("name")));
-			item.put("score", cursor.getInt(cursor.getColumnIndex("score")));
-			item.put("date", cursor.getString(cursor.getColumnIndex("date")));
-			// 将结果存放在 list 中，返回。
-			list.add(item);
+			//HashMap<String, Comparable> item = new HashMap<String, Comparable>();
+			rankitem tmp = new rankitem();
+			tmp.name = cursor.getString(cursor.getColumnIndex("name"));
+			tmp.score = Integer.parseInt(cursor.getString(cursor.getColumnIndex("score")));
+			tmp.date = cursor.getString(cursor.getColumnIndex("date"));
+			mlist.add(tmp);
 		}
-		return list;
+		return mlist;
 	}
 	public void deleteAll() {
 		dbInstance.delete(DB_TABLENAME,null,null);
