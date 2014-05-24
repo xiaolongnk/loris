@@ -7,16 +7,15 @@ import java.util.ArrayList;
 public class Main {
 
 	public Main(){
-		ArrayList t = new ArrayList();
+		ArrayList<String> t = new ArrayList<String>();
 		t.add("hello");
 		t.add("hello1");
-		for(int i=0; i<t.size(); i++) {
-			System.out.println(t.get(i));
-		}
+		for(String s: t){
+			System.out.println(s);
+		} 
 	}
 	
 	public static void main(String args[]){
 		new Main();
 	}
-	
 }
