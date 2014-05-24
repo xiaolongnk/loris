@@ -2,57 +2,69 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bac">"
-    <TextView 
+    android:background="@color/light"
+    android:orientation="vertical" >
+
+    <TextView
         android:layout_width="fill_parent"
-        android:layout_weight="8"
         android:layout_height="fill_parent"
-        android:textColor="#FFF0F5"
-        android:textSize="25dp"
+        android:layout_weight="8"
+        android:background="@color/white"
         android:gravity="center"
-        android:background="#e0000000"
-        android:text="英雄榜"></TextView>
+        android:text="@string/txt_top_list"
+        android:textColor="#0000ff"
+        android:textSize="25sp" >
+    </TextView>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:orientation="vertical">"
-    <ListView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:id="@+id/hero_list"></ListView>
-    <LinearLayout 
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="8"
-        android:gravity="center_vertical"
-        android:background="#e0000000">
-        <Button 
-            android:id="@+id/hero_delete"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/hero_list"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@drawable/background_select"
-            android:textColor="@drawable/color_select"
-            android:textSize="22dp"
-            android:text="清空英雄榜"></Button>
-        <TextView
-            android:layout_width="30dp"
-            android:layout_height="fill_parent"></TextView>
-        <Button
-           android:id="@+id/quit"
+            android:layout_height="0dp"
+            android:layout_weight="8" >
+        </ListView>
+
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@drawable/background_select"
-            android:textColor="@drawable/color_select"
-            android:textSize="22dp"
-            android:text="退出"></Button>
-            "
+            android:gravity="center_vertical"
+            android:orientation="horizontal" 
+            >
+
+            <Button
+                android:id="@+id/hero_delete"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="4"
+                android:background="@color/white"
+                android:text="@string/txt_clear_list"
+                android:textColor="#0000ff"
+                android:textSize="22sp" >
+            </Button>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent" >
+            </TextView>
+
+            <Button
+                android:id="@+id/quit"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="4"
+                android:background="@color/white"
+                android:text="@string/txt_exit"
+                android:textColor="#0000ff"
+                android:textSize="22sp" >
+            </Button>
+        </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
-            "
 
 </LinearLayout>

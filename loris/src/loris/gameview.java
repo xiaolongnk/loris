@@ -26,6 +26,7 @@ public class gameview extends View {
 	private Paint mpaint;
 	private Shader mShader;
 	private Paint netpen;
+	private Paint whitePen;
 	
 	public gameview(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -38,17 +39,17 @@ public class gameview extends View {
 				board[i][j] = 0;
 			}
 		mpaint = new Paint();
-		mpaint.setColor(Color.parseColor("#00000000"));
-		mShader = new LinearGradient(0,0,600,540
-				, new int[] {
-				Color.parseColor("#FF1493"), Color.parseColor("#0000FF") }
-				, null , Shader.TileMode.REPEAT);
+		mpaint.setColor(Color.BLUE);
 		netpen = new Paint();
 		netpen.setColor(Color.GRAY);
+		whitePen = new Paint();
+		whitePen.setColor(Color.WHITE);
+		
 	}
 	
-	public void fix() {
-		
+	public void fix(Canvas canvas) {
+		canvas.drawRect(size*vwidth,0,this.getWidth(),this.getHeight(), whitePen);
+		canvas.drawRect(0,size*vheight,this.getWidth(),this.getHeight(), whitePen);
 	}
 
 	public void updateboard(ArrayList<Point> p) {
@@ -70,17 +71,6 @@ public class gameview extends View {
 	public void onDraw(Canvas canvas) {
 		
 		if(!isfirst) caculateSize(this.getWidth(),this.getHeight());
-		
-		canvas.drawRect(size*vwidth,0,this.getWidth(),this.getHeight(), mpaint);
-		canvas.drawRect(0,size*vheight,this.getWidth(),this.getHeight(),mpaint);
-		
-		fix();
-		
-		mpaint.setShader(mShader);
-		mpaint.setShadowLayer(2 , 2 , 2 , Color.GRAY);
-		mpaint.setColor(Color.BLUE);
-		mpaint.setStrokeCap(Paint.Cap.ROUND);
-        mpaint.setStrokeJoin(Paint.Join.ROUND); 
 
         for (int i = 0; i < vwidth; i++)
 			for (int j = 0; j < vheight; j++) {
@@ -107,6 +97,7 @@ public class gameview extends View {
 			canvas.drawLine(0,i*size, vwidth*size, i*size, netpen);
 		}
 		drawnow = true;
+		fix(canvas);
 	}
 	public void absorb(ArrayList<Point> p) {
 		for (int i = 0; i < p.size(); i++) {

@@ -1,6 +1,8 @@
 package loris;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -38,19 +40,18 @@ public class lorisdb {
 		return dbInstance.insert(DB_TABLENAME, null, values);
 	}
 	
-	public ArrayList<rankitem> getUsers() {
-		ArrayList<rankitem> mlist = new ArrayList<rankitem>();
+	public ArrayList<HashMap<String,Object>> getUsers() {
+		ArrayList<HashMap<String, Object>> mlist = new ArrayList<HashMap<String,Object>>(100);
 
 		String sql = "select * from " + DB_TABLENAME +" order by score desc";
 		
 		Cursor cursor = dbInstance.rawQuery(sql, null);
 		while(cursor.moveToNext()) {
-			//HashMap<String, Comparable> item = new HashMap<String, Comparable>();
-			rankitem tmp = new rankitem();
-			tmp.name = cursor.getString(cursor.getColumnIndex("name"));
-			tmp.score = Integer.parseInt(cursor.getString(cursor.getColumnIndex("score")));
-			tmp.date = cursor.getString(cursor.getColumnIndex("date"));
-			mlist.add(tmp);
+			HashMap<String, Object> item = new HashMap<String, Object>();
+			item.put("name", cursor.getString(cursor.getColumnIndex("name")));
+			item.put("score", cursor.getString(cursor.getColumnIndex("score")));
+			item.put("date", cursor.getString(cursor.getColumnIndex("date")));
+			mlist.add(item);
 		}
 		return mlist;
 	}

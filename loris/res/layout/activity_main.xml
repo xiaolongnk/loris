@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bac"
+    android:background="@color/light"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -29,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="@drawable/back_right"
+            android:background="#ffffff"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
@@ -69,15 +69,15 @@
 
             <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="80dp" />
+                android:layout_height="60dp" />
 
             <ImageButton
                 android:contentDescription="@string/txt_blank"
                 android:id="@+id/bt_quit"
-                android:layout_width="60dp"
+                android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
-                android:background="#00000000"
+                android:background="@color/white"
                 android:src="@drawable/erreur" >
             </ImageButton>
         </LinearLayout>
@@ -87,18 +87,18 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/back_bottom_new1"
+        android:background="#00f5ff"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="3dp" >
 
         <ImageButton
             android:contentDescription="@string/txt_blank"
+            android:background="@color/white"
             android:id="@+id/bt_left"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#00000000"
             android:src="@drawable/left_select" >
         </ImageButton>
 
@@ -106,9 +106,9 @@
             android:contentDescription="@string/txt_blank"
             android:id="@+id/bt_down"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#00000000"
+            android:background="@color/white"
             android:src="@drawable/down_select" >
         </ImageButton>
 
@@ -116,9 +116,9 @@
             android:contentDescription="@string/txt_blank"
             android:id="@+id/bt_right"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
             android:layout_weight="1"
-            android:background="#00000000"
             android:src="@drawable/right_select" >
         </ImageButton>
 
@@ -126,19 +126,19 @@
             android:contentDescription="@string/txt_blank"
             android:id="@+id/bt_change"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#00000000"
+            android:background="@color/white"
             android:src="@drawable/shift_select" >
         </ImageButton>
 
         <ImageButton
             android:contentDescription="@string/txt_blank"
             android:id="@+id/bottom"
+            android:background="@color/white"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#00000000"
             android:src="@drawable/pau" >
         </ImageButton>
     </LinearLayout>

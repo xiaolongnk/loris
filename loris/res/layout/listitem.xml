@@ -1,107 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linerlayout"
+    android:layout_width="fill_parent"
+    android:layout_height="90dip"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:layout_toRightOf="@+id/user_image"
+    android:background="@color/light"
+    android:orientation="vertical" >
 
-<RelativeLayout
-android:id="@+id/widget33"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:background="#00000000"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
 
-	
-	
-	
-	<LinearLayout
-	android:id="@+id/linerlayout"
-	android:layout_width="fill_parent"
-	android:layout_height="80dip"
-	android:orientation="vertical"
-	android:layout_alignParentTop="true"
-	android:layout_toRightOf="@+id/user_image"
-	android:layout_alignParentRight="true"
-	>
-		<LinearLayout 
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			>
-			
-			<TextView
-			android:id="@+id/tv_showname"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:textSize="17sp"
-			android:gravity="top"
-			android:textColor="#000080"
-			android:text="姓名:"
-			/>
-			
-			<TextView
-			android:id="@+id/tv_name"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="7"
-			android:textSize="17sp"
-			android:gravity="left"
-			android:textColor="#000080"
-			/>
-			
-			</LinearLayout>
-		<LinearLayout 
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			>
-			
-			<TextView
-			android:id="@+id/tv_showmgrade"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:textSize="17sp"
-			android:gravity="left"
-			android:text="分数:"
-			android:textColor="#000080"
-			/>
-		<TextView
-			android:id="@+id/tv_grade"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="7"
-			android:textSize="20sp"
-			android:gravity="left"
-			android:textColor="#000080"
-			/>
-			</LinearLayout>
-			<LinearLayout 
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			>
-			
-			<TextView
-			android:id="@+id/tv_showmodate"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:textSize="17sp"
-			android:gravity="left"
-			android:text="时间:"
-			android:textColor="#000080"
-			/>
-		<TextView
-			android:id="@+id/tv_date"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="7"
-			android:textSize="20sp"
-			android:gravity="left"
-			android:textColor="#000080"
-			/>
-			</LinearLayout>
-	</LinearLayout>
-	
+        <TextView
+            android:id="@+id/tv_showname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/txt_name"
+            android:textColor="#000080"
+            android:textSize="17sp" />
 
-	
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="6"
+            android:textColor="#000080"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_showmgrade"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/txt_score"
+            android:textColor="#000080"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_grade"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:textColor="#000080"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_showmodate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/txt_date"
+            android:textColor="#000080"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:textColor="#000080"
+            android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -95,7 +95,6 @@ public class start extends Activity{
 							start.this.finish();
 						}
 					}).setNegativeButton(txt_cancel, new DialogInterface.OnClickListener() {
-						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							

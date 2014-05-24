@@ -2,67 +2,101 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:background="@drawable/bac">"
-    <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:textColor="#FF1493"
-       	android:textSize="45dp"
-       	android:textStyle="italic"></TextView>"
-    <Button 
-        android:layout_width="150dp"
-        android:layout_height="60dp"
+    android:background="@color/startbackground"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5" >
+    </TextView>
+
+    <Button
         android:id="@+id/start_begin"
-        android:background="@drawable/background_select"
-        android:textColor="@drawable/color_select"
-        android:textSize="30dp"
-        android:text="开始游戏"></Button>
-    <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-     <Button 
         android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:background="@drawable/background_select"
+        android:text="@string/txt_start_game"
+        android:textColor="@drawable/color_select"
+        android:textSize="30sp" >
+    </Button>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
         android:id="@+id/start_hero"
-        android:background="@drawable/background_select"
-        android:textColor="@drawable/color_select"
-        android:textSize="30dp"
-        android:text="英雄榜"></Button>
-       <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-      <Button 
         android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:background="@drawable/background_select"
+        android:text="@string/txt_score_list"
+        android:textColor="@drawable/color_select"
+        android:textSize="30sp" >
+    </Button>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
         android:id="@+id/start_help"
-        android:background="@drawable/background_select"
-        android:textColor="@drawable/color_select"
-        android:textSize="30dp"
-        android:text="FAQ"></Button>
-        <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-       <Button 
         android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:background="@drawable/background_select"
+        android:text="@string/txt_faq"
+        android:textColor="@drawable/color_select"
+        android:textSize="30sp" >
+    </Button>
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
         android:id="@+id/start_author"
-        android:background="@drawable/background_select"
-        android:textColor="@drawable/color_select"
-        android:textSize="30dp"
-        android:text="开发人员"></Button>
-         <TextView 
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-       <Button 
         android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:id="@+id/start_quit"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="3"
         android:background="@drawable/background_select"
+        android:text="@string/txt_developer"
         android:textColor="@drawable/color_select"
-        android:textSize="30dp"
-        android:text="退出"></Button>
-       "
+        android:textSize="30sp" >
+    </Button>
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/start_quit"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:background="@drawable/background_select"
+        android:text="@string/txt_exit"
+        android:textColor="@drawable/color_select"
+        android:textSize="30sp" >
+    </Button>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5" >
+    </TextView>
 
 </LinearLayout>
