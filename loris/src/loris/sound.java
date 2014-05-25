@@ -29,7 +29,6 @@ public class sound {
             afd = act.getAssets().openFd("background.mp3");  
         } catch (Exception e) {   
             e.printStackTrace();  
-            //Logger.log("Tried creating Music with missing asset ... " + file);  
             System.exit(0);  
             return;  
         }  
@@ -40,19 +39,16 @@ public class sound {
             afd.close();  
         } catch (IOException e) {  
             e.printStackTrace();  
-           // Logger.log("Error setting data source in Music.play, IO exception");  
             System.exit(0);  
             return;  
         } catch (IllegalStateException e) {  
             e.printStackTrace();  
-           // Logger.log("Error setting data source in Music.play, fail ...");  
             return;  
         }  
         try {  
             mediaPlayer.prepare();    
         } catch (Exception e) {   
             e.printStackTrace();  
-          //  Logger.log("Error preparing MediaPlayer");  
             System.exit(0);  
             return;  
         }  

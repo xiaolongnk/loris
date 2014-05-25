@@ -35,8 +35,8 @@ import loris.lorisdb;
 import loris.rankitem;
 public class MainActivity extends Activity {
 
-	public gameview loris;
-	public shownext smallloris;
+	private gameview loris;
+	private shownext smallloris;
 	private ImageButton bt_left;
 	private ImageButton bt_right;
 	private ImageButton bt_down;
@@ -58,14 +58,9 @@ public class MainActivity extends Activity {
 	private TextView tv_level;
 	private ArrayList<Point> tempinfo;
 	
-	
-	public MediaPlayer player;
-
 	private ArrayList<Point> pointmine;
 
 	private static int gamespeed = 600;
-
-	// 下面是两个消息的 映射。
 	private int gamescore=0;
 	private int oldgamespeed=50;
 	private int gamestate = 1;
@@ -73,43 +68,30 @@ public class MainActivity extends Activity {
 	private static final int refresh = 0x7777;
 	private static final int makegrade = 0x8888;
 
-	// 下面的信息用来保存一个新生成的点。这三个值是 srat 初始化所需要的。
 	private int gamelevel = 1;
 	private int scoreinc = 0;
-	private forcast cur;	// 保存当前的物块的信息
-	private forcast next;	// 保存下一次将要出现的物块的信息
+	private forcast cur;
+	private forcast next;
 	
 	private srat mrat;
 	private srat nrat;
-	private SoundPool sp;//声明一个SoundPool   
-    private int music;//定义一个整型用load（）；来设置suondID  
-    private int music2;
 
 	private lorisdb db;
 	String background;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		sp= new SoundPool(10, AudioManager.STREAM_SYSTEM, 5);//第一个参数为同时播放数据流的最大个数，第二数据流类型，第三为声音质量   
-	    music = sp.load(this, R.raw.move, 1); //把你的声音素材放到res/raw里，第2个参数即为资源文件，第3个为音乐的优先级 
-	    music2 = sp.load(this, R.raw.bomb, 1); //把你的声音素材放到res/raw里，第2个参数即为资源文件，第3个为音乐的优先级 
 		ini();
-		player = MediaPlayer.create(this, R.raw.background); 
-		player.setLooping(true);//设置循环播放
-		player.start();
 		dealwithbt();
 		gamethread();
 		
 	}
 
-	// 初始化界面中所有的控件。
 	public void ini() {
 
 		tempinfo = new ArrayList<Point>();
-		// 用来存放 7 种 图形。每种图形是一个 Arraylist。
 		pointmine = new ArrayList<Point>();
 		
-		// 对两个物块信息的初始化。
 		cur = new forcast();
 		next = new forcast();
 		
@@ -128,11 +110,13 @@ public class MainActivity extends Activity {
 		txt_ok = getResources().getString(R.string.txt_ok);
 		txt_onboard = getResources().getString(R.string.txt_onboard);
 		txt_level = getResources().getString(R.string.txt_level);
-		txt_level = getResources().getString(R.string.txt_level);
+		txt_levelup = getResources().getString(R.string.txt_levelup);
 		txt_over = getResources().getString(R.string.txt_over);
 		txt_score = getResources().getString(R.string.txt_score);
 		txt_timeformater = getResources().getString(R.string.txt_timeformater);
 		
+		tv_level.setText(txt_level+" "+gamelevel);
+		tv_score.setText(txt_score+" "+gamescore);
 		inipointmine();
 	}
 
@@ -146,7 +130,6 @@ public class MainActivity extends Activity {
 					tempinfo = mrat.getdata();
 					loris.drawpoint(tempinfo);
 					loris.invalidate();
-					sp.play(music, 1, 1, 0, 0, 1);
 				}
 			}
 		});
@@ -158,7 +141,6 @@ public class MainActivity extends Activity {
 					tempinfo = mrat.getdata();
 					loris.drawpoint(tempinfo);
 					loris.invalidate();
-					sp.play(music, 1, 1, 0, 0, 1);
 				}
 
 			}
@@ -170,9 +152,7 @@ public class MainActivity extends Activity {
 				if (mrat.moveright(loris.board)) {
 					tempinfo = mrat.getdata();
 					loris.drawpoint(tempinfo);
-					loris.invalidate();
-					sp.play(music, 1, 1, 0, 0, 1);
-					
+					loris.invalidate();					
 				}
 			}
 		});
@@ -184,7 +164,6 @@ public class MainActivity extends Activity {
 				if(arg1.getAction()==MotionEvent.ACTION_DOWN){
 					oldgamespeed = gamespeed;
 					gamespeed = 30;
-					sp.play(music, 1, 1, 0, 0, 1);	
 				}
 				else if(arg1.getAction() == MotionEvent.ACTION_UP){
 					gamespeed = oldgamespeed;
@@ -202,7 +181,7 @@ public class MainActivity extends Activity {
 					bt_right.setEnabled(false);
 					bt_change.setEnabled(false);
 					bt_down.setEnabled(false);
-					player.pause();
+					//player.pause();
 				} else if (gamestate == 2) {
 					gamestate = 1;
 					bt_stop.setImageResource(R.drawable.pau);
@@ -210,7 +189,6 @@ public class MainActivity extends Activity {
 					bt_right.setEnabled(true);
 					bt_change.setEnabled(true);
 					bt_down.setEnabled(true);
-					player.start();
 				}
 			}
 		});
@@ -220,11 +198,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				stop = true;
-				player.stop();
 				Intent intent = new Intent(MainActivity.this,start.class);
 				startActivity(intent);
 				MainActivity.this.finish();
-				
 			}
 			
 		});
@@ -256,7 +232,6 @@ public class MainActivity extends Activity {
                 user.score=score;
                 
                 db.insert(user);
-                player.stop();
 				Intent intent = new Intent(MainActivity.this,start.class);
 				startActivity(intent);
                 MainActivity.this.finish();
@@ -273,35 +248,29 @@ public class MainActivity extends Activity {
 
 	public void inipointmine() {
 		Point t = new Point();
-		t.set(4, 0);
+		t.set(4, -1);
+		pointmine.add(t);
+		t.set(4, -1);
+		pointmine.add(t);
+		t.set(3, -1);
 		pointmine.add(t);
 		t.set(4, 0);
 		pointmine.add(t);
-		t.set(3, 2);
-		pointmine.add(t);
-		t.set(4, 1);
+		t.set(4, -1);
 		pointmine.add(t);
 		t.set(4, 0);
 		pointmine.add(t);
-		t.set(4, 1);
+		t.set(4, -1);
 		pointmine.add(t);
-		t.set(4, 0);
-		pointmine.add(t);
-
+		
 	}
 
 	public forcast newsrat() {
 
 		forcast temp = new forcast();
 		int atype=0,atypetype=0;
-		
-		// 在这个随机一个图形， 用来存放生成的图形。
 		Random random = new Random();
-		// 只产生 长条 横向的。
 		atype = random.nextInt(8);
-		//if( type ==0 ) type +=3;
-		// 为三个属性生成值就可以。
-		// int type = random.nextInt()%NUM;
 		atypetype = 1;
 		if( atype >0 && atype<=pointmine.size()) temp.spoint = pointmine.get(atype-1);
 		else{
@@ -314,8 +283,6 @@ public class MainActivity extends Activity {
 	}
 
 	public void gamethread() {
-
-		// 在线程启动之前，必须要有 两个物块。一个是当前的物块，另一个是下一次要出现的物块。
 		cur = newsrat();
 		next = newsrat(); // 用来进行预报。
 		mrat = new srat(cur); // 利用当前的物块开始游戏。
@@ -325,11 +292,9 @@ public class MainActivity extends Activity {
 			public void run() {
 				while (true) {
 					try {
-						if (stop)
-							break; // 如果累加到顶点，那么本局游戏结束。这个线程结束。
+						if (stop)	break;
 						else if (gamestate == 2) {
-							// do nothing!
-							// 只有在 不等于 2 的时候 才会继续运行。
+
 						} 
 						else if (mrat.movedown(loris.board)) {
 							Message m = new Message();
@@ -340,7 +305,7 @@ public class MainActivity extends Activity {
 							m.what = MainActivity.makegrade;
 							MainActivity.this.myhandler.sendMessage(m);
 						}
-						Thread.sleep(gamespeed);// wait for 1000 second
+						Thread.sleep(gamespeed);
 
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -348,47 +313,43 @@ public class MainActivity extends Activity {
 				}
 			};
 		}).start();
-		
 	}
 
 	Handler myhandler = new Handler() {
 		public void handleMessage(Message msg) {
 			if (msg.what == MainActivity.makegrade) {
-				loris.absorb(mrat.getdata());
-				final int score =loris.makegrade();
-				//grade=score;
+				
+				final int score =loris.makegrade(mrat.getdata());
 				if(score == -1) {
 					stop = true;
 					Toast.makeText(MainActivity.this,txt_over,Toast.LENGTH_LONG).show();
 					end(gamescore);
-					Thread.currentThread().yield();					
+					Thread.currentThread().yield();		
 				}
-				else if(score!=0){
-					sp.play(music2, 1, 1, 0, 0, 1);
+				else if(score>0){
 					gamescore += score;
 					scoreinc += score;
 					if(scoreinc>=200){
-						gamelevel ++;
+						gamelevel++;
 						scoreinc=0;
-						Toast.makeText(MainActivity.this,txt_levelup,Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this,txt_levelup,
+								Toast.LENGTH_SHORT).show();
+						tv_level.setText(txt_level+gamelevel);
 						if(gamespeed>=300){
 							gamespeed -=50;
 							oldgamespeed -=50;
-							tv_level.setText(txt_level+gamelevel);
 						}
 					}
-					// 更新相应的区域。
 					tv_score.setText(txt_score+gamescore);
-					
+					loris.invalidate();
 				}
-				cur.copy(next);		// 用预报的图像重新初始化我们的 物块对象。
-				mrat = new srat(cur);	// 初始化当前的物块。
-				next = newsrat();	// 重新生成 一个物块，放在 预备箱中。
+				cur.copy(next);
+				mrat = new srat(cur);
+				next = newsrat();
 				nrat = new srat(next);
-				smallloris.drawpoint(nrat.getdata());// 进行信息的预报。
+				smallloris.drawpoint(nrat.getdata());
 				
 			} else if (msg.what == MainActivity.refresh) {
-				//这说明游戏物块正在下落，实际上不需要做什么。
 				tempinfo = mrat.getdata();
 				loris.drawpoint(tempinfo);
 				loris.invalidate();
