@@ -5,12 +5,6 @@ import java.util.ArrayList;
 import android.graphics.Point;
 import android.util.Log;
 
-
-
-/*
- * 
- */
-
 public class srat {
 
 	public ArrayList<Point> sratinfo = new ArrayList<Point>();
@@ -200,16 +194,12 @@ public class srat {
 		return false;
 	}
 	
-	// 如果可以移动， 返回true 否则返回 false
 	public boolean moveleft(int [][] b) {
-		// 实现方法 同 moveright
 		
 		Point temp= null;
 		temp = new Point(sratpoint.x-1,sratpoint.y);
 		ArrayList <Point> tt= fillsratinfo(temp,srattype,srattypetype);
 		if (check(tt,b)){
-			// 如果可以，左移。 如果不可以 坐标不变.
-			//prt("可以向左移动。即将更新坐标。");
 			sratinfo = tt;
 			sratpoint = temp;
 			return true;
@@ -219,8 +209,6 @@ public class srat {
 
 	public Point trychange() {
 		Point t=new Point();
-
-		// 第一种图形
 		if(srattype ==1){
 			if(srattypetype==1){
 				t.set(sratpoint.x+1, sratpoint.y-1);
@@ -229,13 +217,12 @@ public class srat {
 				t.set(sratpoint.x-1, sratpoint.y+1);
 			}
 		}
-		// 第二种图形
 		else if(srattype ==2 ){
 			if(srattypetype==1){
 				t.set(sratpoint.x, sratpoint.y+1);
 			}
 			else if(srattypetype==2){
-				t.set(sratpoint.x, sratpoint.y);	// 变到第三种 不用改变
+				t.set(sratpoint.x, sratpoint.y);
 			}else if(srattypetype==3){
 				t.set(sratpoint.x-1,sratpoint.y+1);
 			}
@@ -315,17 +302,13 @@ public class srat {
 		return true;
 	}
 
-	// 这是物块变形的对外接口。用来响应变形按钮事件。
 	public boolean change(int [][]b) {
 		ArrayList<Point> temp = new ArrayList<Point>();
 		Point t = trychange(); // 尝试修改图形，只修该图形的起点坐标。
 		int trytype = nexttypetype(); // 得到旋转之后的图形姿态。
-		// 将旋转之后的图形详细信息还原到数组中。
 		temp = fillsratinfo(t, srattype, trytype);
-		// 下面对这个数组进行正确性检验，如果通过，那么旋转，如果不通过，那么不变形。
 		if (check(temp,b)) {
-			sratinfo = temp; // 如果物块可以变形，那么变形。
-			// 修改物块的 姿态标记。
+			sratinfo = temp;
 			srattypetype = trytype;
 			sratpoint.set(t.x, t.y);
 			return true;
@@ -335,8 +318,6 @@ public class srat {
 		}
 	}
 
-	// 对 7 中图形，对么一种姿态的下一种姿态进行定义。、
-	// 返回当前姿态的下一种姿态。
 	public int nexttypetype() {
 		int value = 0;
 		if(srattype ==1 || srattype==4||srattype==5){
