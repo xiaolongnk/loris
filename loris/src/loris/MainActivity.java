@@ -245,7 +245,7 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+	
 	public void inipointmine() {
 		Point t = new Point();
 		t.set(4, -1);
@@ -262,30 +262,40 @@ public class MainActivity extends Activity {
 		pointmine.add(t);
 		t.set(4, -1);
 		pointmine.add(t);
-		
 	}
 
 	public forcast newsrat() {
 
 		forcast temp = new forcast();
-		int atype=0,atypetype=0;
+		int atype=0,atypetype=1;
 		Random random = new Random();
 		atype = random.nextInt(8);
-		atypetype = 1;
-		if( atype >0 && atype<=pointmine.size()) temp.spoint = pointmine.get(atype-1);
+		
+		// assign the first value for srat;
+		if( atype >0 && atype<=pointmine.size()) 
+			temp.spoint = pointmine.get(atype-1);
 		else{
 			atype = 7;
 			temp.spoint = pointmine.get(6);
 		}
 		temp.type = atype;
+		
+		// assign value for atypetype;
+		if(atype==1 || atype==4 || atype==5){
+			atypetype = 1 + random.nextInt(2);
+		}else if(atype==2 || atype==3 || atype==6){
+			atypetype = 1 + random.nextInt(4);
+		}else {
+			atypetype = 1;
+		}
 		temp.typetype = atypetype;
 		return temp;
 	}
 
 	public void gamethread() {
 		cur = newsrat();
-		next = newsrat(); // 用来进行预报。
-		mrat = new srat(cur); // 利用当前的物块开始游戏。
+		next = newsrat();
+		mrat = new srat(cur);
 		nrat = new srat(next);
 		smallloris.drawpoint(nrat.getdata());
 		new Thread(new Runnable() {
@@ -294,7 +304,7 @@ public class MainActivity extends Activity {
 					try {
 						if (stop)	break;
 						else if (gamestate == 2) {
-
+							
 						} 
 						else if (mrat.movedown(loris.board)) {
 							Message m = new Message();
@@ -324,7 +334,7 @@ public class MainActivity extends Activity {
 					stop = true;
 					Toast.makeText(MainActivity.this,txt_over,Toast.LENGTH_LONG).show();
 					end(gamescore);
-					Thread.currentThread().yield();		
+					Thread.currentThread().yield();
 				}
 				else if(score>0){
 					gamescore += score;
