@@ -18,7 +18,7 @@ public class help extends Activity{
 	    	Intent intent = new Intent(help.this,start.class);
 			startActivity(intent);
 			help.this.finish();
-	    }  
+	    }
 	    return super.onKeyDown(keyCode, event);  
 	}
 }
