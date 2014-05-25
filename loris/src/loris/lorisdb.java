@@ -12,8 +12,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class lorisdb {
 	
-	public static final String DB_DBNAME="lorisscore";
-	public static final String DB_TABLENAME="score";
+	public static final String DB_DBNAME=Messages.getString("lorisdb.0"); //$NON-NLS-1$
+	public static final String DB_TABLENAME=Messages.getString("lorisdb.1"); //$NON-NLS-1$
 	public static final int VERSION = 4;
 	public static SQLiteDatabase dbInstance;
 	private MyDBHelper myDBHelper;
@@ -34,23 +34,23 @@ public class lorisdb {
 	
 	public long insert( rankitem user) {
 		ContentValues values = new ContentValues();
-		values.put("name", user.name);
-		values.put("score", user.score);
-		values.put("date", user.date);
+		values.put(Messages.getString("lorisdb.2"), user.name); //$NON-NLS-1$
+		values.put(Messages.getString("lorisdb.3"), user.score); //$NON-NLS-1$
+		values.put(Messages.getString("lorisdb.4"), user.date); //$NON-NLS-1$
 		return dbInstance.insert(DB_TABLENAME, null, values);
 	}
 	
 	public ArrayList<HashMap<String,Object>> getUsers() {
 		ArrayList<HashMap<String, Object>> mlist = new ArrayList<HashMap<String,Object>>(100);
 
-		String sql = "select * from " + DB_TABLENAME +" order by score desc";
+		String sql = Messages.getString("lorisdb.5") + DB_TABLENAME +Messages.getString("lorisdb.6"); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		Cursor cursor = dbInstance.rawQuery(sql, null);
 		while(cursor.moveToNext()) {
 			HashMap<String, Object> item = new HashMap<String, Object>();
-			item.put("name", cursor.getString(cursor.getColumnIndex("name")));
-			item.put("score", cursor.getString(cursor.getColumnIndex("score")));
-			item.put("date", cursor.getString(cursor.getColumnIndex("date")));
+			item.put(Messages.getString("lorisdb.7"), cursor.getString(cursor.getColumnIndex(Messages.getString("lorisdb.8")))); //$NON-NLS-1$ //$NON-NLS-2$
+			item.put(Messages.getString("lorisdb.9"), cursor.getString(cursor.getColumnIndex(Messages.getString("lorisdb.10")))); //$NON-NLS-1$ //$NON-NLS-2$
+			item.put(Messages.getString("lorisdb.11"), cursor.getString(cursor.getColumnIndex(Messages.getString("lorisdb.12")))); //$NON-NLS-1$ //$NON-NLS-2$
 			mlist.add(item);
 		}
 		return mlist;
@@ -61,7 +61,7 @@ public class lorisdb {
 	}
 	
 	public int getTotalCount() {
-		Cursor number= dbInstance.query(DB_TABLENAME, new String[]{"count(*)"}, null, null, null, null, null);
+		Cursor number= dbInstance.query(DB_TABLENAME, new String[]{Messages.getString("lorisdb.13")}, null, null, null, null, null); //$NON-NLS-1$
 		number.moveToNext();
 		return number.getInt(0);
 	}
@@ -77,21 +77,21 @@ public class lorisdb {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			tableCreate = new StringBuffer();
-			tableCreate.append("create table ")
+			tableCreate.append(Messages.getString("lorisdb.14")) //$NON-NLS-1$
 					   .append(DB_TABLENAME)
-					   .append(" (")
-					   .append("_id integer primary key autoincrement,")
-					   .append("name text,")
-					   .append("score int,")
-					   .append("date text")
-					   .append(")");
+					   .append(Messages.getString("lorisdb.15")) //$NON-NLS-1$
+					   .append(Messages.getString("lorisdb.16")) //$NON-NLS-1$
+					   .append(Messages.getString("lorisdb.17")) //$NON-NLS-1$
+					   .append(Messages.getString("lorisdb.18")) //$NON-NLS-1$
+					   .append(Messages.getString("lorisdb.19")) //$NON-NLS-1$
+					   .append(Messages.getString("lorisdb.20")); //$NON-NLS-1$
 			System.out.println(tableCreate.toString());
 			db.execSQL(tableCreate.toString());
 		}
 		
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			String sql = "drop table if exists " + DB_TABLENAME;
+			String sql = Messages.getString("lorisdb.21") + DB_TABLENAME; //$NON-NLS-1$
 			db.execSQL(sql);
 			myDBHelper.onCreate(db);
 		}
