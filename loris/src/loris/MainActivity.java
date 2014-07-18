@@ -9,9 +9,6 @@ import com.example.loris.R;
 
 import java.text.SimpleDateFormat;   
 
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -334,7 +331,8 @@ public class MainActivity extends Activity {
 					stop = true;
 					Toast.makeText(MainActivity.this,txt_over,Toast.LENGTH_LONG).show();
 					end(gamescore);
-					Thread.currentThread().yield();
+					Thread.currentThread();
+					Thread.yield();
 				}
 				else if(score>0){
 					gamescore += score;

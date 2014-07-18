@@ -2,9 +2,6 @@ package loris;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.example.loris.R;
 
 
@@ -20,7 +17,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import loris.lorisdb;
-import loris.rankitem;
 public class hero extends Activity{
 	
 	
