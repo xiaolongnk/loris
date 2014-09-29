@@ -69,9 +69,7 @@ public class gameview extends View {
 		for (int i = 0; i < vwidth; i++)
 			for (int j = 0; j < vheight; j++) {
 				if (board[i][j] == 1) {
-					int x = i, y = j;
-					canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1)
-							* size, mpaint);
+					canvas.drawRect(i * size, j * size, (i + 1) * size, (j + 1)* size, mpaint);
 				}
 			}
 		if(drawnow){
@@ -139,13 +137,13 @@ public class gameview extends View {
 		Log.d(LOGTYPE,"makegrade is: "+grade);
 		
 		if (grade == 1)
-			grade = 1 * 10;
+			grade = 10;
 		else if (grade == 2)
-			grade = 3 * 10;
+			grade = 30;
 		else if (grade == 3)
-			grade = 5 * 10;
+			grade = 50;
 		else if (grade == 4)
-			grade = 8 * 10;
+			grade = 80;
 		drawnow = false;
 		return grade;
 	}

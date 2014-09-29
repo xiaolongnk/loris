@@ -47,7 +47,7 @@ public class srat {
 				temp.add(new Point(a, b + 3));
 			}
 			else {
-				Log.d(LOGTYPE,"³öÏÖÁËÒ»ÖÖÎŞ·¨´¦ÀíµÄÍ¼ĞÎ¡£"+type);
+				Log.d(LOGTYPE,"å‡ºç°äº†ä¸€ç§æ— æ³•å¤„ç†çš„å›¾å½¢ã€‚"+type);
 			}
 		}
 		else if(type==2){
@@ -75,7 +75,7 @@ public class srat {
 				temp.add(new Point(a+2,b));
 				temp.add(new Point(a+2,b-1));
 			}else {
-				Log.d(LOGTYPE,"³öÏÖÁËÒ»ÖÖÎŞ·¨´¦ÀíµÄÍ¼ĞÎ¡£"+type);
+				Log.d(LOGTYPE,"å‡ºç°äº†ä¸€ç§æ— æ³•å¤„ç†çš„å›¾å½¢ã€‚"+type);
 			}
 		}
 		else if(type ==3 ){
@@ -103,7 +103,7 @@ public class srat {
 				temp.add(new Point(a+2,b));
 				temp.add(new Point(a+2,b+1));
 			}else {
-				System.out.println("³öÏÖÁËÒ»ÖÖÎŞ·¨´¦ÀíµÄÍ¼ĞÎ¡£in "+type);
+				System.out.println("å‡ºç°äº†ä¸€ç§æ— æ³•å¤„ç†çš„å›¾å½¢ã€‚in "+type);
 			}
 		}
 		else if(type==4){
@@ -119,7 +119,7 @@ public class srat {
 				temp.add(new Point(a+1,b+1));
 				temp.add(new Point(a+2,b+1));
 			}else {
-				System.out.println("³öÏÖÁËÒ»ÖÖÎŞ·¨´¦ÀíµÄÍ¼ĞÎ¡£in "+type);
+				System.out.println("å‡ºç°äº†ä¸€ç§æ— æ³•å¤„ç†çš„å›¾å½¢ã€‚in "+type);
 			}
 		}
 		else if(type==5){
@@ -135,7 +135,7 @@ public class srat {
 				temp.add(new Point(a+1,b-1));
 				temp.add(new Point(a+2,b-1));
 			}else {
-				System.out.println("³öÏÖÁËÒ»ÖÖÎŞ·¨´¦ÀíµÄÍ¼ĞÎ¡£in "+type);
+				System.out.println("å‡ºç°äº†ä¸€ç§æ— æ³•å¤„ç†çš„å›¾å½¢ã€‚in "+type);
 			}
 		}
 		else if(type==6){
@@ -163,7 +163,7 @@ public class srat {
 				temp.add(new Point(a+1,b-1));
 				temp.add(new Point(a+1,b+1));
 			}else {
-				System.out.println("³öÏÖÁËÒ»ÖÖÎŞ·¨´¦ÀíµÄÍ¼ĞÎ¡£in "+type);
+				System.out.println("å‡ºç°äº†ä¸€ç§æ— æ³•å¤„ç†çš„å›¾å½¢ã€‚in "+type);
 			}
 		}
 		else if(type==7){
@@ -173,11 +173,11 @@ public class srat {
 				temp.add(new Point(a,b+1));
 				temp.add(new Point(a+1,b+1));
 			}else {
-				System.out.println("³öÏÖÁËÒ»ÖÖÎŞ·¨´¦ÀíµÄÍ¼ĞÎ¡£in "+type);
+				System.out.println("å‡ºç°äº†ä¸€ç§æ— æ³•å¤„ç†çš„å›¾å½¢ã€‚in "+type);
 			}
 		}
 		else {
-			System.out.println("³öÏÖÁËÒ»ÖÖÎŞ·¨´¦ÀíµÄÍ¼ĞÎ¡£in "+type);
+			System.out.println("å‡ºç°äº†ä¸€ç§æ— æ³•å¤„ç†çš„å›¾å½¢ã€‚in "+type);
 		}
 		return temp;
 	}
@@ -289,12 +289,12 @@ public class srat {
 			int y = temp.get(i).y;
 			
 			if( x>= vwidth || x<0 ||  y>=vheight ){
-				Log.d(LOGTYPE,"³ö½çÁË£¬¾Ü¾øÒÆ¶¯ £¡  "+x+"  "+y);
+				Log.d(LOGTYPE,"å‡ºç•Œäº†ï¼Œæ‹’ç»ç§»åŠ¨ ï¼  "+x+"  "+y);
 				return false;
 			}
 			if( x>=0 && x<vwidth && y< vheight){	
 				if(y>=0) if( b[x][y]==1 ){
-					Log.d(LOGTYPE,"±»Îï¿éµ²×¡ÁË£¬¾Ü¾øÒÆ¶¯£¡"+x+"  "+y);
+					Log.d(LOGTYPE,"è¢«ç‰©å—æŒ¡ä½äº†ï¼Œæ‹’ç»ç§»åŠ¨ï¼"+x+"  "+y);
 					return false;
 				}
 			}
@@ -304,8 +304,8 @@ public class srat {
 
 	public boolean change(int [][]b) {
 		ArrayList<Point> temp = new ArrayList<Point>();
-		Point t = trychange(); // ³¢ÊÔĞŞ¸ÄÍ¼ĞÎ£¬Ö»ĞŞ¸ÃÍ¼ĞÎµÄÆğµã×ø±ê¡£
-		int trytype = nexttypetype(); // µÃµ½Ğı×ªÖ®ºóµÄÍ¼ĞÎ×ËÌ¬¡£
+		Point t = trychange(); // å°è¯•ä¿®æ”¹å›¾å½¢ï¼Œåªä¿®è¯¥å›¾å½¢çš„èµ·ç‚¹åæ ‡ã€‚
+		int trytype = nexttypetype(); // å¾—åˆ°æ—‹è½¬ä¹‹åçš„å›¾å½¢å§¿æ€ã€‚
 		temp = fillsratinfo(t, srattype, trytype);
 		if (check(temp,b)) {
 			sratinfo = temp;
@@ -313,7 +313,7 @@ public class srat {
 			sratpoint.set(t.x, t.y);
 			return true;
 		} else{
-			System.out.println("±äĞÎÊ§°Ü!");
+			System.out.println("å˜å½¢å¤±è´¥!");
 			return false;
 		}
 	}
