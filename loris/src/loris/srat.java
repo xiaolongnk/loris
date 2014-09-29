@@ -28,7 +28,7 @@ public class srat {
 		
 		ArrayList<Point> temp = new ArrayList<Point>();
 		
-		int a=0, b=0;
+		int a,b;
 		a = s.x;
 		b = s.y;
 		if(type==1){
@@ -196,7 +196,7 @@ public class srat {
 	
 	public boolean moveleft(int [][] b) {
 		
-		Point temp= null;
+		Point temp;
 		temp = new Point(sratpoint.x-1,sratpoint.y);
 		ArrayList <Point> tt= fillsratinfo(temp,srattype,srattypetype);
 		if (check(tt,b)){
@@ -283,27 +283,27 @@ public class srat {
 	}
 
 	
-	public boolean check(ArrayList<Point> temp,int[][]b) {
-		for(int i=0; i<temp.size();i++){
-			int x=temp.get(i).x;
-			int y = temp.get(i).y;
-			
-			if( x>= vwidth || x<0 ||  y>=vheight ){
-				Log.d(LOGTYPE,"出界了，拒绝移动 ！  "+x+"  "+y);
-				return false;
-			}
-			if( x>=0 && x<vwidth && y< vheight){	
-				if(y>=0) if( b[x][y]==1 ){
-					Log.d(LOGTYPE,"被物块挡住了，拒绝移动！"+x+"  "+y);
-					return false;
-				}
-			}
-		}
+	public boolean check(ArrayList<Point> plist,int[][]b) {
+
+        for(Point tmp:plist){
+            int x = tmp.x;
+            int y = tmp.y;
+            if( x>= vwidth || x<0 ||  y>=vheight ){
+                Log.d(LOGTYPE,"出界了，拒绝移动 ！  "+x+"  "+y);
+                return false;
+            }
+            if( x>=0 && x<vwidth && y< vheight){
+                if(y>=0) if( b[x][y]==1 ){
+                    Log.d(LOGTYPE,"被物块挡住了，拒绝移动！"+x+"  "+y);
+                    return false;
+                }
+            }
+        }
 		return true;
 	}
 
 	public boolean change(int [][]b) {
-		ArrayList<Point> temp = new ArrayList<Point>();
+		ArrayList<Point> temp;
 		Point t = trychange(); // 尝试修改图形，只修该图形的起点坐标。
 		int trytype = nexttypetype(); // 得到旋转之后的图形姿态。
 		temp = fillsratinfo(t, srattype, trytype);
@@ -336,7 +336,7 @@ public class srat {
 
 	public boolean movedown(int [][]b) {
 		Point temp = new Point(sratpoint.x,sratpoint.y+1);
-		ArrayList<Point> temparray = new ArrayList<Point>();
+		ArrayList<Point> temparray;
 		temparray = fillsratinfo(temp,srattype,srattypetype);
 		if(check(temparray,b)){
 			sratpoint = temp;

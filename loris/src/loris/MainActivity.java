@@ -28,8 +28,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import loris.lorisdb;
-import loris.rankitem;
+
 public class MainActivity extends Activity {
 
 	private gameview loris;
@@ -74,7 +73,6 @@ public class MainActivity extends Activity {
 	private srat nrat;
 
 	private lorisdb db;
-	String background;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -223,9 +221,8 @@ public class MainActivity extends Activity {
 				rankitem user=new rankitem();
                 user.name=input.getText().toString();
                 SimpleDateFormat formatter = new SimpleDateFormat(txt_timeformater,Locale.CHINA);       
-                Date curDate  = new Date(System.currentTimeMillis());    
-                String str = formatter.format(curDate);  
-                user.date= str;
+                Date curDate  = new Date(System.currentTimeMillis());
+                user.date= formatter.format(curDate);
                 user.score=score;
                 
                 db.insert(user);
@@ -264,7 +261,7 @@ public class MainActivity extends Activity {
 	public forcast newsrat() {
 
 		forcast temp = new forcast();
-		int atype=0,atypetype=1;
+		int atype,atypetype;
 		Random random = new Random();
 		atype = random.nextInt(8);
 		
@@ -301,7 +298,8 @@ public class MainActivity extends Activity {
 					try {
 						if (stop)	break;
 						else if (gamestate == 2) {
-							
+							// do nothing
+                            System.out.println("hello world");
 						} 
 						else if (mrat.movedown(loris.board)) {
 							Message m = new Message();
@@ -318,7 +316,7 @@ public class MainActivity extends Activity {
 						e.printStackTrace();
 					}
 				}
-			};
+			}
 		}).start();
 	}
 

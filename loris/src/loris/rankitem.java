@@ -10,4 +10,4 @@ public class rankitem{
 		score =0;
 		date = "";
 	}
-};
+}

@@ -36,7 +36,7 @@ public class shownext extends View {
 	}
 	
 	public void caculateSize(int x, int y){
-		size = (int)(x<y?x:y)/6;
+        size = (x<y?x:y)/6;
 	}
 	
 	public void onDraw(Canvas canvas) {
@@ -44,13 +44,20 @@ public class shownext extends View {
 			caculateSize(this.getWidth(),this.getHeight());
 			isfirst = false;
 		}
-		
+
+        for(Point tmp:info){
+            int x = tmp.x - 3;
+            int y = tmp.y + 3;
+            canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1)* size, bluepen);
+        }
+
+/*
 		for (int i = 0; i < info.size(); i++) {
 			int x = info.get(i).x-3;
 			int y = info.get(i).y+3;
-			canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1)* size, bluepen);
-		}
-		
+            canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1)* size, bluepen);
+        }
+*/
 		for( int i=0; i<=vwidth; i++){
 			canvas.drawLine(i*size,0, i*size, vheight*size, greypen);
 		}

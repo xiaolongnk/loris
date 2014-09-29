@@ -73,12 +73,13 @@ public class gameview extends View {
 				}
 			}
 		if(drawnow){
-			for (int i = 0; i < info.size(); i++) {
-				int x = info.get(i).x;
-				int y = info.get(i).y;
-				canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1) * size,
-					mpaint);
-			}
+
+            for(Point tmp:info){
+                int x = tmp.x;
+                int y = tmp.y;
+                canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1) * size,
+                        mpaint);
+            }
 		}else {
 			drawnow = true;
 		}
@@ -93,12 +94,12 @@ public class gameview extends View {
 	}
 
 	public void absorb(ArrayList<Point> p) {
-		for (int i = 0; i < p.size(); i++) {
-			int x = p.get(i).x;
-			int y = p.get(i).y;
-			if (x >= 0 && x < vwidth && y >= 0 && y < vheight)
-				board[x][y] = 1;
-		}
+
+        for(Point tmp:p){
+            int x = tmp.x;
+            int y = tmp.y;
+            if (x >= 0 && x < vwidth && y >= 0 && y < vheight) board[x][y] = 1;
+        }
 	}
 
 	public int makegrade(ArrayList<Point> p) {

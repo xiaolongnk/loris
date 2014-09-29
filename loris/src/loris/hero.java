@@ -3,11 +3,6 @@ package loris;
 import java.util.ArrayList;
 import java.util.HashMap;
 import com.example.loris.R;
-
-
-
-
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +11,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import loris.lorisdb;
 public class hero extends Activity{
-	
+
 	
 	
 	private ListView herolist;
